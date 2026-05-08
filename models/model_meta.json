@@ -1,0 +1,25 @@
+{
+  "features": [
+    "vibration",
+    "temperature",
+    "noise",
+    "current",
+    "rpm",
+    "pressure"
+  ],
+  "label_column": "label",
+  "failure_prob_model": "rf_failure_prob.joblib",
+  "failure_class_model": "rf_failure_class.joblib",
+  "classes": [
+    "Bearing Wear",
+    "Misalignment",
+    "Overheating",
+    "Valve/Leak"
+  ],
+  "metrics": {
+    "failure_prob_accuracy": 1.0,
+    "failure_prob_auc": 1.0,
+    "failure_class_accuracy": 0.9382151029748284
+  },
+  "source_csv": "C:\\Users\\sri hari\\Downloads\\musics\\sentinel_pulse (2)\\sentinel_pulse\\datasets\\predictive_maintenance.csv"
+}

@@ -1,0 +1,18 @@
+{
+  "features": [
+    "vibration",
+    "temperature",
+    "noise",
+    "current",
+    "rpm",
+    "pressure"
+  ],
+  "classes": [
+    "Healthy",
+    "Bearing Wear",
+    "Overheating",
+    "Misalignment",
+    "Valve/Leak"
+  ],
+  "accuracy": 0.95875
+}

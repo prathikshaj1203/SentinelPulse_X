@@ -1,0 +1,136 @@
+{
+  "machines": [
+    {
+      "machine_name": "Industrial Motor",
+      "aliases": ["motor", "ac motor", "electric motor", "induction motor", "industrial motor", "dc motor"],
+      "components": ["Bearing", "Shaft", "Rotor", "Stator Winding", "Cooling Fan", "Terminal Box"],
+      "common_failures": [
+        {"name": "Bearing Wear", "component": "Bearing", "severity": "High"},
+        {"name": "Overheating", "component": "Stator Winding", "severity": "Critical"},
+        {"name": "Shaft Misalignment", "component": "Shaft", "severity": "Medium"},
+        {"name": "Insulation Breakdown", "component": "Stator Winding", "severity": "Critical"},
+        {"name": "Cooling Fan Failure", "component": "Cooling Fan", "severity": "Medium"}
+      ],
+      "symptoms": ["high vibration", "grinding noise", "overheating", "burning smell", "reduced rpm", "unusual current draw"],
+      "questions": [
+        {"id": "vibration", "text": "Is the motor showing abnormally high vibration?", "weight": 0.20, "maps_to": ["Bearing Wear", "Shaft Misalignment"]},
+        {"id": "noise", "text": "Do you hear grinding or screeching noises?", "weight": 0.18, "maps_to": ["Bearing Wear"]},
+        {"id": "overheat", "text": "Is the motor casing unusually hot to the touch?", "weight": 0.22, "maps_to": ["Overheating", "Insulation Breakdown"]},
+        {"id": "smell", "text": "Is there a burning or insulation smell?", "weight": 0.20, "maps_to": ["Insulation Breakdown", "Overheating"]},
+        {"id": "rpm_drop", "text": "Has the motor RPM dropped below rated speed?", "weight": 0.10, "maps_to": ["Overheating", "Shaft Misalignment"]},
+        {"id": "current_spike", "text": "Are current readings higher than nominal?", "weight": 0.10, "maps_to": ["Insulation Breakdown", "Bearing Wear"]}
+      ],
+      "recommendations": {
+        "Bearing Wear": ["Schedule bearing replacement within 7 days", "Re-lubricate per OEM spec", "Perform vibration spectrum analysis"],
+        "Overheating": ["Inspect cooling fan and airflow path", "Verify load is within rated capacity", "Check ambient temperature and ventilation"],
+        "Shaft Misalignment": ["Perform laser shaft alignment", "Inspect coupling and base mounting bolts"],
+        "Insulation Breakdown": ["Immediately stop and isolate motor", "Run insulation resistance (megger) test", "Schedule rewinding"],
+        "Cooling Fan Failure": ["Replace cooling fan assembly", "Clear blocked vents and clean fins"]
+      }
+    },
+    {
+      "machine_name": "Conveyor System",
+      "aliases": ["conveyor", "belt conveyor", "conveyor belt", "roller conveyor", "conveyor system"],
+      "components": ["Drive Motor", "Belt", "Roller", "Pulley", "Gearbox", "Tensioner"],
+      "common_failures": [
+        {"name": "Belt Slippage", "component": "Belt", "severity": "Medium"},
+        {"name": "Roller Seizure", "component": "Roller", "severity": "High"},
+        {"name": "Belt Misalignment", "component": "Belt", "severity": "Medium"},
+        {"name": "Gearbox Failure", "component": "Gearbox", "severity": "Critical"},
+        {"name": "Pulley Wear", "component": "Pulley", "severity": "Medium"}
+      ],
+      "symptoms": ["belt slipping", "uneven movement", "loud noise", "oil leak", "belt tearing", "stops under load"],
+      "questions": [
+        {"id": "slip", "text": "Is the belt slipping on the pulley?", "weight": 0.20, "maps_to": ["Belt Slippage", "Pulley Wear"]},
+        {"id": "uneven", "text": "Is the belt running unevenly or drifting sideways?", "weight": 0.18, "maps_to": ["Belt Misalignment"]},
+        {"id": "noise", "text": "Are there grinding or knocking noises from rollers?", "weight": 0.18, "maps_to": ["Roller Seizure"]},
+        {"id": "oil_leak", "text": "Is oil leaking near the gearbox?", "weight": 0.20, "maps_to": ["Gearbox Failure"]},
+        {"id": "stop_load", "text": "Does the conveyor stall under normal load?", "weight": 0.14, "maps_to": ["Gearbox Failure", "Belt Slippage"]},
+        {"id": "wear", "text": "Are visible cracks or wear marks present on belt/pulley?", "weight": 0.10, "maps_to": ["Pulley Wear", "Belt Slippage"]}
+      ],
+      "recommendations": {
+        "Belt Slippage": ["Re-tension belt to OEM spec", "Inspect pulley lagging", "Check load distribution"],
+        "Roller Seizure": ["Replace seized roller", "Lubricate roller bearings", "Inspect adjacent rollers"],
+        "Belt Misalignment": ["Adjust tracking idlers", "Verify frame squareness", "Re-center belt"],
+        "Gearbox Failure": ["Stop machine immediately", "Check oil level and quality", "Schedule gearbox overhaul"],
+        "Pulley Wear": ["Replace pulley", "Inspect lagging surface", "Verify belt tension"]
+      }
+    },
+    {
+      "machine_name": "Air Compressor",
+      "aliases": ["compressor", "air compressor", "reciprocating compressor", "screw compressor"],
+      "components": ["Piston", "Valve", "Air Filter", "Pressure Tank", "Drive Motor", "Cooling System"],
+      "common_failures": [
+        {"name": "Valve Leak", "component": "Valve", "severity": "High"},
+        {"name": "Piston Wear", "component": "Piston", "severity": "High"},
+        {"name": "Air Filter Clogging", "component": "Air Filter", "severity": "Low"},
+        {"name": "Tank Pressure Drop", "component": "Pressure Tank", "severity": "Medium"},
+        {"name": "Overheating", "component": "Cooling System", "severity": "Critical"}
+      ],
+      "symptoms": ["pressure drop", "overheating", "loud knocking", "oil in air line", "frequent cycling", "weak airflow"],
+      "questions": [
+        {"id": "pressure", "text": "Is the discharge pressure below the rated value?", "weight": 0.22, "maps_to": ["Valve Leak", "Tank Pressure Drop"]},
+        {"id": "overheat", "text": "Is the compressor head running hotter than normal?", "weight": 0.20, "maps_to": ["Overheating", "Piston Wear"]},
+        {"id": "knock", "text": "Do you hear knocking or metallic noises?", "weight": 0.18, "maps_to": ["Piston Wear"]},
+        {"id": "oil_carry", "text": "Is oil appearing in the downstream air line?", "weight": 0.14, "maps_to": ["Piston Wear", "Valve Leak"]},
+        {"id": "cycling", "text": "Is the compressor cycling on/off too frequently?", "weight": 0.14, "maps_to": ["Tank Pressure Drop", "Valve Leak"]},
+        {"id": "airflow", "text": "Is airflow at the outlet noticeably weak?", "weight": 0.12, "maps_to": ["Air Filter Clogging", "Valve Leak"]}
+      ],
+      "recommendations": {
+        "Valve Leak": ["Inspect and reseat intake/discharge valves", "Replace worn valve plates", "Check valve gasket"],
+        "Piston Wear": ["Measure cylinder bore wear", "Replace piston rings", "Schedule top-end overhaul"],
+        "Air Filter Clogging": ["Replace air filter", "Schedule weekly filter inspection"],
+        "Tank Pressure Drop": ["Leak test all fittings with soap solution", "Inspect tank drain valve", "Verify pressure switch calibration"],
+        "Overheating": ["Clean cooler fins", "Verify coolant/oil level", "Reduce duty cycle"]
+      }
+    },
+    {
+      "machine_name": "Centrifugal Pump",
+      "aliases": ["pump", "water pump", "coolant pump", "centrifugal pump"],
+      "components": ["Impeller", "Mechanical Seal", "Bearing", "Casing", "Shaft"],
+      "common_failures": [
+        {"name": "Cavitation", "component": "Impeller", "severity": "High"},
+        {"name": "Seal Leak", "component": "Mechanical Seal", "severity": "Critical"},
+        {"name": "Bearing Wear", "component": "Bearing", "severity": "High"},
+        {"name": "Shaft Misalignment", "component": "Shaft", "severity": "Medium"}
+      ],
+      "symptoms": ["low flow rate", "vibration", "noise like gravel", "visible leakage", "overheating casing"],
+      "questions": [
+        {"id": "noise", "text": "Does the pump sound like it's pumping gravel?", "weight": 0.3, "maps_to": ["Cavitation"]},
+        {"id": "leak", "text": "Is there visible fluid leaking from the seal area?", "weight": 0.3, "maps_to": ["Seal Leak"]},
+        {"id": "flow", "text": "Is the discharge flow significantly lower than normal?", "weight": 0.2, "maps_to": ["Cavitation", "Seal Leak"]},
+        {"id": "vibe", "text": "Is there excessive vibration in the pump body?", "weight": 0.2, "maps_to": ["Bearing Wear", "Shaft Misalignment"]}
+      ],
+      "recommendations": {
+        "Cavitation": ["Check suction line for blockages", "Increase suction head pressure", "Inspect impeller for erosion"],
+        "Seal Leak": ["Replace mechanical seal", "Check shaft for scoring", "Verify flush line flow"],
+        "Bearing Wear": ["Replace bearings", "Check lubrication quality", "Verify alignment"],
+        "Shaft Misalignment": ["Re-align pump and motor", "Check baseplate for looseness"]
+      }
+    },
+    {
+        "machine_name": "Industrial Fan",
+        "aliases": ["fan", "blower", "exhaust fan", "ventilation fan"],
+        "components": ["Fan Blade", "Motor", "Drive Belt", "Bearing", "Housing"],
+        "common_failures": [
+            {"name": "Blade Imbalance", "component": "Fan Blade", "severity": "High"},
+            {"name": "Belt Slippage", "component": "Drive Belt", "severity": "Medium"},
+            {"name": "Bearing Wear", "component": "Bearing", "severity": "High"},
+            {"name": "Motor Overheating", "component": "Motor", "severity": "Critical"}
+        ],
+        "symptoms": ["excessive vibration", "squealing noise", "low airflow", "hot motor casing", "visible wobble"],
+        "questions": [
+            {"id": "vibe", "text": "Is the fan housing vibrating heavily?", "weight": 0.3, "maps_to": ["Blade Imbalance", "Bearing Wear"]},
+            {"id": "squeal", "text": "Do you hear a high-pitched squealing noise?", "weight": 0.2, "maps_to": ["Belt Slippage"]},
+            {"id": "airflow", "text": "Is the airflow weaker than usual?", "weight": 0.2, "maps_to": ["Belt Slippage", "Blade Imbalance"]},
+            {"id": "heat", "text": "Is the motor too hot to touch?", "weight": 0.3, "maps_to": ["Motor Overheating"]}
+        ],
+        "recommendations": {
+            "Blade Imbalance": ["Clean blades of debris", "Perform dynamic balancing", "Inspect for blade damage"],
+            "Belt Slippage": ["Adjust belt tension", "Replace worn belts", "Check pulley alignment"],
+            "Bearing Wear": ["Replace fan/motor bearings", "Check lubrication", "Verify alignment"],
+            "Motor Overheating": ["Check cooling vents", "Verify motor load", "Inspect electrical supply"]
+        }
+    }
+  ]
+}
