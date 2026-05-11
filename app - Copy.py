@@ -3,7 +3,6 @@ import plotly.express as px
 from utils.theme import apply_theme
 from utils.kb_loader import list_machines
 from utils.sidebar import render_sidebar
-
 from database.db import (
     create_tables,
     create_system_logs_table,

@@ -13,3 +13,4 @@ timestamp,machine,failure,severity,health_score
 2026-05-08T04:31:20,Industrial Fan,Motor Overheating,Critical,45.2
 2026-05-08T04:33:07,Air Compressor,Piston Wear,High,64.62
 2026-05-08T04:39:11,Centrifugal Pump,Cavitation,High,89.92
+2026-05-08T07:47:47,Industrial Fan,Blade Imbalance,High,61.52

@@ -2,9 +2,11 @@ import pandas as pd
 import google.generativeai as genai
 from utils.logger import DIAG_LOG, read_log
 from utils.kb_loader import list_machines
+import os
+
 
 # API Config
-GEMINI_KEY = "AIzaSyAG2XiedlujYrjmo7vi1HCT1HC1PrgTRhk"
+GEMINI_KEY = os.getenv("GEMINI_KEY")
 genai.configure(api_key=GEMINI_KEY)
 model = genai.GenerativeModel('gemini-2.5-flash-lite')
 

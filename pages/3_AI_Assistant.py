@@ -1,13 +1,13 @@
 import streamlit as st
 from src.ai_assistant import answer
 from utils.theme import apply_theme, glass_card
-from utils.logger import log_system
-import time
 
+import time
+from utils.sidebar import render_sidebar
 # Init
 st.set_page_config(page_title="Assistant · Sentinel Pulse", layout="wide")
 apply_theme()
-log_system("assistant_view")
+render_sidebar()
 
 # Header
 st.markdown("<h1 style='margin-bottom:0;'>AI Assistant</h1>", unsafe_allow_html=True)
@@ -23,7 +23,7 @@ with col_info:
     st.markdown("#### Suggestions")
     samples = ["Why do bearings fail?", "Conveyor belt maintenance", "Motor overheating fix", "Show recent logs"]
     for s in samples:
-        if st.button(s, use_container_width=True):
+        if st.button(s, width='stretch'):
             if "chat" not in st.session_state: st.session_state.chat = []
             st.session_state.chat.append({"role": "user", "content": s})
             st.session_state.chat.append({"role": "assistant", "content": answer(s)})
