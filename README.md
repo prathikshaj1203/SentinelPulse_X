@@ -205,8 +205,5 @@ DB_PORT=5432
 ## Developed By
 
 **PRATHIKSHA J**
-Department of IT & Cognitive Systems
-Sri Krishna Arts & Science College
-
 ```
 ```
